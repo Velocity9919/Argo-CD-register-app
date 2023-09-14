@@ -125,7 +125,7 @@ rm argocd-linux-amd64
 ````
 Expose argocd-server
 ````
-$ kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
+kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
 ````
 Wait about 2 minutes for the LoadBalancer creation
 ````
