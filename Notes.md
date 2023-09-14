@@ -113,51 +113,51 @@ Next, let's apply the yaml configuration files for ArgoCd
 ````
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 ````
-3 ) Now we can view the pods created in the ArgoCD namespace.
-    
-    ````
-    kubectl get pods -n argocd
-    ````
-4 ) To interact with the API Server we need to deploy the CLI:
-    ````
-    curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
-    sudo install -m 555 argocd-linux-amd64 /usr/local/bin/argocd
-    rm argocd-linux-amd64
-    ````
-5 ) Expose argocd-server
-    $ kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
-
-6 ) Wait about 2 minutes for the LoadBalancer creation
-    ````
-    kubectl get svc -n argocd
-    ````
-7 ) Get pasword and decode it.
-    ````
-    kubectl get secret argocd-initial-admin-secret -n argocd -o yaml
-    ````
-    ````
-    echo WXVpLUg2LWxoWjRkSHFmSA== | base64 --decode
-    ````
+Now we can view the pods created in the ArgoCD namespace.    
+````
+kubectl get pods -n argocd
+````
+To interact with the API Server we need to deploy the CLI:
+````
+curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
+sudo install -m 555 argocd-linux-amd64 /usr/local/bin/argocd
+rm argocd-linux-amd64
+````
+Expose argocd-server
+````
+$ kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
+````
+Wait about 2 minutes for the LoadBalancer creation
+````
+kubectl get svc -n argocd
+````
+Get pasword and decode it.
+````
+kubectl get secret argocd-initial-admin-secret -n argocd -o yaml
+````
+````
+echo WXVpLUg2LWxoWjRkSHFmSA== | base64 --decode
+````
 ## Add EKS Cluster to ArgoCD
 
-8 ) login to ArgoCD from CLI
-    ````
-    argocd login a2255bb2bb33f438d9addf8840d294c5-785887595.ap-south-1.elb.amazonaws.com --username admin
-    ````
-    ````
-    argocd cluster list
-    ````
-9 ) Below command will show the EKS cluster
-     ````
-     kubectl config get-contexts
-     ````
-10 ) Add above EKS cluster to ArgoCD with below command
-     ````
-     argocd cluster add arn:aws:eks:ap-south-1:074946469941:cluster/naresh-test-cluster --name aresh-test-cluster
-     ````
-    ````
-    kubectl get svc
-    ````
-    ````
-    argocd cluster list
-    ````
+login to ArgoCD from CLI
+````
+argocd login a2255bb2bb33f438d9addf8840d294c5-785887595.ap-south-1.elb.amazonaws.com --username admin
+````
+````
+argocd cluster list
+````
+Below command will show the EKS cluster
+````
+kubectl config get-contexts
+````
+Add above EKS cluster to ArgoCD with below command
+````
+argocd cluster add arn:aws:eks:ap-south-1:074946469941:cluster/naresh-test-cluster --name aresh-test-cluster
+````
+````
+kubectl get svc
+````
+````
+argocd cluster list
+````
