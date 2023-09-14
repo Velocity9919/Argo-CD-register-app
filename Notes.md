@@ -105,16 +105,14 @@ eksctl delete cluster --name naresh-test-cluster --region ap-south-1
 
 ## ArgoCD Installation on EKS Cluster and Add EKS Cluster to ArgoCD
 
-1 ) First, create a namespace
-    
-    ````
-    kubectl create namespace argocd
-    ````
-2 ) Next, let's apply the yaml configuration files for ArgoCd
-    
-    ````
-    kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
-    ````
+First, create a namespace    
+````
+kubectl create namespace argocd
+````
+Next, let's apply the yaml configuration files for ArgoCd    
+````
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+````
 3 ) Now we can view the pods created in the ArgoCD namespace.
     
     ````
