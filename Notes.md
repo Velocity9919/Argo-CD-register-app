@@ -110,12 +110,13 @@ eksctl delete cluster --name naresh-test-cluster --region ap-south-1
     ````
     kubectl create namespace argocd
     ````
-
 2 ) Next, let's apply the yaml configuration files for ArgoCd
+    
     ````
     kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
     ````
 3 ) Now we can view the pods created in the ArgoCD namespace.
+    
     ````
     kubectl get pods -n argocd
     ````
