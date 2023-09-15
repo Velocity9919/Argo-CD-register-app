@@ -151,7 +151,7 @@ Below command will show the EKS cluster
 ````
 kubectl config get-contexts
 ````
-Add above EKS cluster to ArgoCD with below command
+Add above EKS cluster Name to ArgoCD with below command
 ````
 argocd cluster add arn:aws:eks:ap-south-1:074946469941:cluster/naresh-test-cluster --name aresh-test-cluster
 ````
